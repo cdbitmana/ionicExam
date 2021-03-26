@@ -4,6 +4,9 @@ import router from './router';
 
 import { IonicVue } from '@ionic/vue';
 
+// 컴포넌트 불러오기
+import TitleBar from './components/TitleBar.vue'
+
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/vue/css/core.css';
 
@@ -26,6 +29,8 @@ import './theme/variables.css';
 const app = createApp(App)
   .use(IonicVue)
   .use(router);
+
+app.component('TitleBar' , TitleBar);
   
 router.isReady().then(() => {
   app.mount('#app');
