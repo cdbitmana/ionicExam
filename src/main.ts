@@ -29,9 +29,9 @@ import './theme/variables.css';
 const app = createApp(App)
   .use(IonicVue)
   .use(router);
-
-app.component('TitleBar' , TitleBar);
   
+app.component('TitleBar', TitleBar);
+
 router.isReady().then(() => {
   app.mount('#app');
 });

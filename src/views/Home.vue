@@ -1,7 +1,7 @@
 <template>
   <ion-page>
     <ion-header :translucent="true">
-     <TitleBar></TitleBar>
+     <TitleBar>타이틀바</TitleBar>
     </ion-header>
     
     <ion-content :fullscreen="true">
