@@ -3,6 +3,7 @@
     <ion-header :translucent="true">
      <TitleBar>타이틀바</TitleBar>
     </ion-header>
+
     
     <ion-content :fullscreen="true">
       <ion-header collapse="condense">
