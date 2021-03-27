@@ -51,7 +51,7 @@
 <script lang="ts">
 import { defineComponent, ref, reactive, getCurrentInstance, onMounted } from 'vue'
 import { IonPage, IonContent } from '@ionic/vue'
-import { MainApi } from '../apis/'
+import { MainApi, useMainApi } from '../apis/'
 import { Router } from 'vue-router';
 
 export default defineComponent({
@@ -67,7 +67,7 @@ export default defineComponent({
   },
   setup(props) {
     const router:Router = getCurrentInstance()?.appContext.config.globalProperties.$router;
-    const mainApi:MainApi = getCurrentInstance()?.appContext.config.globalProperties.$mainApi;
+    const mainApi = useMainApi();
 
     const loginIdElRef = ref<HTMLInputElement>();
     const loginPwElRef = ref<HTMLInputElement>();

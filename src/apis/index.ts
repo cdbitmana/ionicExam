@@ -1,4 +1,5 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import { inject } from 'vue';
 import {IArticle, IMember} from '../types'
 
 // API 원형
@@ -211,3 +212,11 @@ export class MainApi extends HttpClient {
     );
   }
 }
+
+export const mainApiSymbol = Symbol('mainApiSymbol');
+
+export const createMainApi = () => {
+  return new MainApi();
+}
+
+export const useMainApi = ():MainApi => inject(mainApiSymbol) as MainApi;

@@ -11,7 +11,8 @@ const loginedMemberName = Util.toStringOrNull(localStorage.getItem("loginedMembe
 const loginedMemberNickname = Util.toStringOrNull(localStorage.getItem("loginedMemberNickname"))
 const loginedMemberProfileImgUrl = Util.toStringOrNull(localStorage.getItem("loginedMemberProfileImgUrl"))
 
-export const globalShare:any = reactive({
+export const globalShare = () => {
+  const globalState: any = reactive({
   fullPath: '',
   loginedMember:{
     authKey,
@@ -20,7 +21,7 @@ export const globalShare:any = reactive({
     nickname:loginedMemberNickname,
     profileImgUrl:loginedMemberProfileImgUrl
   },
-  isLogined: computed(() => globalShare.loginedMember.id !== null ),
+  isLogined: computed(() => globalState.loginedMember.id !== null ),
   logout: () => {
     localStorage.removeItem("authKey");
     localStorage.removeItem("loginedMemberId");
@@ -29,6 +30,8 @@ export const globalShare:any = reactive({
     localStorage.removeItem("loginedMemberProfileImgUrl");
     location.replace('/member/login');
   }
-});
+  })
+  
+};
 
-export const useGlobalShare = ():any => inject(globalStateSymbol);
+  export const useGlobalShare = ():any => inject(globalStateSymbol);

@@ -27,5 +27,5 @@ interface GlobalState {
   loginedMember:IMember;
   fullPath:string;
   isLogined:boolean;
-  logout:()=>{}
+  logout:function;
 }

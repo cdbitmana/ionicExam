@@ -46,7 +46,7 @@ import './theme/variables.css';
 
 
 // MainApi 불러오기
-import { MainApi } from './apis/'
+import { createMainApi, MainApi, mainApiSymbol } from './apis/'
 import { globalShare, globalStateSymbol } from './stores';
 
 // MainApi 객체 생성
@@ -101,7 +101,8 @@ router.beforeEach((to, from, next) => {
 const app = createApp(App, { globalShare })
   .use(IonicVue)
   .use(router)
-  .provide(globalStateSymbol, globalShare);
+  .provide(globalStateSymbol, globalShare)
+  .provide(mainApiSymbol, createMainApi());
 
 
 // 전역 컴포넌트 등록
@@ -116,5 +117,5 @@ router.isReady().then(() => {
 
 
 // 전력 라이브러리 등록
-app.config.globalProperties.$mainApi = mainApi;
+
 app.config.globalProperties.$router = router;
