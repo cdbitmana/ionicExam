@@ -44,36 +44,10 @@ import '@ionic/vue/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
-// 전역상태 만들기
-const authKey = localStorage.getItem("authKey")
-const loginedMemberId = Util.toIntOrNull(localStorage.getItem("loginedMemberId"))
-const loginedMemberName = Util.toStringOrNull(localStorage.getItem("loginedMemberName"))
-const loginedMemberNickname = Util.toStringOrNull(localStorage.getItem("loginedMemberNickname"))
-const loginedMemberProfileImgUrl = Util.toStringOrNull(localStorage.getItem("loginedMemberProfileImgUrl"))
-
-const globalShare:any = reactive({
-  fullPath: '',
-  loginedMember:{
-    authKey,
-    id:loginedMemberId,
-    name:loginedMemberName,
-    nicknam:loginedMemberNickname,
-    profileImgUrl:loginedMemberProfileImgUrl
-  },
-  isLogined: computed(() => globalShare.loginedMember.id !== null ),
-  logout: () => {
-    localStorage.removeItem("authKey");
-    localStorage.removeItem("loginedMemberId");
-    localStorage.removeItem("loginedMemberName");
-    localStorage.removeItem("loginedMemberNickname");
-    localStorage.removeItem("loginedMemberProfileImgUrl");
-
-    location.replace('/member/login');
-  }
-});
 
 // MainApi 불러오기
 import { MainApi } from './apis/'
+import { globalShare, globalStateSymbol } from './stores';
 
 // MainApi 객체 생성
 const mainApi = new MainApi();
@@ -126,7 +100,9 @@ router.beforeEach((to, from, next) => {
 
 const app = createApp(App, { globalShare })
   .use(IonicVue)
-  .use(router);
+  .use(router)
+  .provide(globalStateSymbol, globalShare);
+
 
 // 전역 컴포넌트 등록
 app.component('TitleBar', TitleBar);

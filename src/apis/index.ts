@@ -171,7 +171,7 @@ export class MainApi extends HttpClient {
 
   public article_doWrite(boardId:number, title: string, body: string) {
     return this.postByForm<MainApi__article_doWrite__IResponseBody>(
-      `/article/doAdd`, {
+      `/usr/article/doAdd`, {
         boardId,
         title,
         body

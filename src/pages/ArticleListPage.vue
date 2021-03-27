@@ -46,9 +46,10 @@
 <script lang="ts">
 import { defineComponent, ref, reactive, getCurrentInstance, onMounted, watch } from 'vue'
 import { IonPage, IonContent } from '@ionic/vue'
-import { IArticle } from '../types/'
+
 import { MainApi } from '../apis/'
 import HeaderBar from '@/components/HeaderBar.vue'
+import { IArticle } from '@/types'
 
 export default defineComponent({
   name: 'ArticleListPage',
@@ -70,7 +71,8 @@ export default defineComponent({
   },
   setup(props) {
     const mainApi:MainApi = getCurrentInstance()?.appContext.config.globalProperties.$mainApi;
-
+    
+    
     const newArticleTitleElRef = ref<HTMLInputElement>();
     const newArticleBodyElRef = ref<HTMLInputElement>();
 

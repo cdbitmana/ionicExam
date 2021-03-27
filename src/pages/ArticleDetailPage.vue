@@ -89,8 +89,9 @@
 <script lang="ts">
 import { defineComponent, ref, reactive, getCurrentInstance, onMounted, watch } from 'vue'
 import { IonPage, IonContent } from '@ionic/vue'
-import { IArticle } from '../types/'
+
 import { MainApi } from '../apis/'
+import { IArticle } from '../types';
 
 export default defineComponent({
   name: 'ArticleDetailPage',

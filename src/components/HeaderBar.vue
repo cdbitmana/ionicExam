@@ -30,7 +30,7 @@
             </router-link>
           </li>
           <li v-if="globalShare.isLogined">
-            <a v-on:click="globalShare.logout" class="cursor-pointer h-full flex items-center font-bold px-4 hover:bg-white hover:text-black whitespace-nowrap">
+            <a v-on:click="globalState.logout" class="cursor-pointer h-full flex items-center font-bold px-4 hover:bg-white hover:text-black whitespace-nowrap">
               로그아웃
             </a>
           </li>
@@ -40,18 +40,19 @@
             </router-link>
           </li>
           <li>
-            <router-link to="/article/list?boardId=1" class="h-full flex items-center font-bold px-4 hover:bg-white hover:text-black whitespace-nowrap">
+            <ion-router-link href="/article/list?boardId=1" class="h-full flex items-center font-bold px-4 hover:bg-white hover:text-black whitespace-nowrap">
               공지사항 리스트
-            </router-link>
+            </ion-router-link>
           </li>
           <li>
-            <router-link to="/article/list?boardId=2" class="h-full flex items-center font-bold px-4 hover:bg-white hover:text-black whitespace-nowrap">
+            <ion-router-link href="/article/list?boardId=2" class="h-full flex items-center font-bold px-4 hover:bg-white hover:text-black whitespace-nowrap">
               자유 리스트
-            </router-link>
+            </ion-router-link>
           </li>
         </ul>
       </nav>
     </div>
+    
   </header>
    </ion-header>
 </template>
@@ -59,6 +60,8 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { IonHeader } from '@ionic/vue'
+import { IMember } from '../types'
+import { useGlobalShare } from '@/stores'
 
 export default defineComponent({
   name: 'HeaderBar',
@@ -66,10 +69,18 @@ export default defineComponent({
     IonHeader
   },
   props: {
-    globalShare: {
+    globalState: {
       type:Object,
       required:true
     }
+  },
+  setup() {
+    const globalShare = useGlobalShare();
+
+    return {
+      globalShare
+    }
+    
   }
 })
 </script>

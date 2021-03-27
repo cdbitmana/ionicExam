@@ -1,8 +1,9 @@
-export interface IEntity {
+interface IEntity {
   id:number;
   regDate:string;
   updateDate:string;
 }
+
 
 export interface IArticle extends IEntity {  
   boardId:number;
@@ -20,4 +21,11 @@ export interface IMember extends IEntity {
 	cellphoneNo:string;
 	email:string;
 	extra__thumbImg:string;
+}
+
+interface GlobalState {
+  loginedMember:IMember;
+  fullPath:string;
+  isLogined:boolean;
+  logout:()=>{}
 }

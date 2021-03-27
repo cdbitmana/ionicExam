@@ -36,6 +36,7 @@ import { IonPage, IonContent } from '@ionic/vue'
 import { MainApi } from '../apis/'
 import { useRoute } from 'vue-router'
 import { Router } from 'vue-router';
+import { useGlobalShare } from '@/stores';
 
 export default defineComponent({
   name: 'MemberLoginPage',
@@ -49,12 +50,16 @@ export default defineComponent({
     IonPage, IonContent
   },
   setup(props) {
+    const globalShare = useGlobalShare();
+
     const route = useRoute();
     const router:Router = getCurrentInstance()?.appContext.config.globalProperties.$router;
     const mainApi:MainApi = getCurrentInstance()?.appContext.config.globalProperties.$mainApi;
 
     const loginIdElRef = ref<HTMLInputElement>();
     const loginPwElRef = ref<HTMLInputElement>();
+
+    
 
     onMounted(() => {
       if ( route.query.loginId != null ) {
@@ -123,22 +128,25 @@ export default defineComponent({
           localStorage.setItem("loginedMemberNickname", loginedMember.nickname);
           localStorage.setItem("loginedMemberProfileImgUrl", loginedMember.extra__thumbImg);
 
-          props.globalShare.loginedMember = {
+          globalShare.loginedMember = {
             authKey,
             id:loginedMember.id,
             name:loginedMember.name,
-            nicknam:loginedMember.nickname,
+            nickname:loginedMember.nickname,
             profileImgUrl:loginedMember.extra__thumbImg
           };
 
-          router.replace('/')
+          
+          
+          router.replace('/');
         });
     }
 
     return {
       checkAndLogin,
       loginIdElRef,
-      loginPwElRef
+      loginPwElRef,
+      globalShare
     }
   }
 })
